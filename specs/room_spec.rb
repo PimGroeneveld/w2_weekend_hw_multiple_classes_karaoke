@@ -29,5 +29,23 @@ class RoomTest < MiniTest::Test
     assert_equal(5, @room1.room_cap)
   end
 
+  def test_room_starts_empty
+    assert_equal(0, @room1.check_if_empty)
+  end
+
+  def test_room_has_no_song
+    assert_equal(0, @room2.check_if_no_song)
+  end
+
+  def test_can_check_in_guest
+    @room1.check_in_guest(@guest2)
+    assert_equal("Pim", @guest2.guest_name)
+  end
+
+  def test_can_check_out_guest
+    result = @room2.check_out_guest(@guest3.guest_name)
+    assert_equal(0, result)
+  end
+
 
 end
