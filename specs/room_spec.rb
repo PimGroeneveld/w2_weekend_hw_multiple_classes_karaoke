@@ -12,12 +12,12 @@ class RoomTest < MiniTest::Test
     @song2 = Song.new("Heartbreak Hotel")
     @song3 = Song.new("The Last Frontier Hotel")
 
-    @guest1 = Guest.new("Hans", "The Last Frontier Hotel")
-    @guest2 = Guest.new("Pim", "Hotel California")
-    @guest3 = Guest.new("Niamh", "Heartbreak Hotel")
+    @guest1 = Guest.new("Hans", "The Last Frontier Hotel", 50)
+    @guest2 = Guest.new("Pim", "Hotel California", 30)
+    @guest3 = Guest.new("Niamh", "Heartbreak Hotel", 35)
 
-    @room1 = Room.new(14, 3)
-    @room2 = Room.new(205, 2)
+    @room1 = Room.new(14, 3, 7)
+    @room2 = Room.new(205, 2, 12)
 
   end
 
@@ -26,7 +26,11 @@ class RoomTest < MiniTest::Test
   end
 
   def test_has_room_cap
-    assert_equal(5, @room1.room_cap)
+    assert_equal(3, @room1.room_cap)
+  end
+
+  def test_has_entry_fee
+    assert_equal(12, @room2.entry_fee)
   end
 
   def test_room_starts_empty
@@ -52,10 +56,10 @@ class RoomTest < MiniTest::Test
     assert_equal("The Last Frontier Hotel", @song3.song_name)
   end
 
-  def test_fully_booked
-    result = @room2.fully_booked(@guest1, @guest2, @guest3)
-    assert_equal("Sorry, we are fully booked!", result)
-  end
+  # def test_fully_booked
+  #   result = @room2.fully_booked(@guest1, @guest2, @guest3)
+  #   assert_equal("Sorry, we are fully booked!", result)
+  # end
 
 
 
