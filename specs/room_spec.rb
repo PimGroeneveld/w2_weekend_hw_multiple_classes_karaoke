@@ -16,7 +16,7 @@ class RoomTest < MiniTest::Test
     @guest2 = Guest.new("Pim", "Hotel California")
     @guest3 = Guest.new("Niamh", "Heartbreak Hotel")
 
-    @room1 = Room.new(14, 5)
+    @room1 = Room.new(14, 3)
     @room2 = Room.new(205, 2)
 
   end
@@ -46,6 +46,24 @@ class RoomTest < MiniTest::Test
     result = @room2.check_out_guest(@guest3.guest_name)
     assert_equal(0, result)
   end
+
+  def test_can_add_song_to_room
+    @room1.add_song(@song3)
+    assert_equal("The Last Frontier Hotel", @song3.song_name)
+  end
+
+  def test_fully_booked
+    result = @room2.fully_booked(@guest1, @guest2, @guest3)
+    assert_equal("Sorry, we are fully booked!", result)
+  end
+
+
+
+  # #advanced extensions
+  # def test_can_whoo_when_fav_song
+  #   result = @guest2.whoo_fav_song(@song1, @room1)
+  #   assert_equal("Whoohoo!", result)
+  # end
 
 
 end
