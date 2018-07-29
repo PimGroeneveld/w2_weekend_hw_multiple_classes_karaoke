@@ -32,31 +32,35 @@ class Room
     return @song_in_room << song
   end
 
-  # #extensions
-
+  #extensions
   def pay_entrance(guest, room)
      guest_money = guest.wallet
      guest_money -= @entry_fee
   end
 
 
-  # def fully_booked(guest1, guest2, guest3)
-  #   @guest_in_room << guest1
-  #   @guest_in_room << guest2
-  #   @guest_in_room << guest3
-  #   if @guest_in_room > @room_cap
-  #     p "Sorry, we are fully booked!"
-  #   end
-  # end
+  def fully_booked(guest1, guest2, guest3)
+    @guest_in_room << guest1
+    @guest_in_room << guest2
+    @guest_in_room << guest3
+    if @guest_in_room.count > @room_cap
+      p "Sorry, we are fully booked!"
+    end
+  end
 
+  # Advanced extenstions
+  # for some reason my test cant find this matching method
+  def can_whoohoo(song, room)
+    add_song(room)
+      for pref_song in song
+        if pref_song == song
+          p "Whoohoo!"
+        end
+      end
+  end
 
-  # def whoo_fav_song(pref_song, room)
-  #   add_song(room)
-  #   for song in pref_song
-  #     #still to complete
-  #
-  #   end
-  # end
-
+  def increase_bar_till(bar_till, room)
+    bar_till += room.pay_entrance
+  end
 
 end

@@ -5,6 +5,7 @@ require("minitest/rg")
 require_relative("../room")
 require_relative("../guests")
 require_relative("../songs")
+require_relative("../bar")
 
 class RoomTest < MiniTest::Test
 
@@ -19,6 +20,8 @@ class RoomTest < MiniTest::Test
 
     @room1 = Room.new(14, 3, 7)
     @room2 = Room.new(205, 2, 12)
+
+    @bar = Bar.new(250)
 
   end
 
@@ -67,18 +70,20 @@ class RoomTest < MiniTest::Test
     assert_equal(18, result)
   end
 
-  # def test_fully_booked
-  #   result = @room2.fully_booked(@guest1, @guest2, @guest3)
-  #   assert_equal("Sorry, we are fully booked!", result)
-  # end
+  def test_fully_booked
+    result = @room2.fully_booked(@guest1, @guest2, @guest3)
+    assert_equal("Sorry, we are fully booked!", result)
+  end
 
+  #advanced extensions
+  #this for some reason does not want to link to the .can_whoohoo method. Also for any further tests like the test_can_increase_till_by_entry_fee. Keep getting NoMethodError. Wonder why the first 10 tests work but then from this point on it doesnt cant find any methods anymore?
+  def test_can_whoohoo_when_fav_song
+    assert_equal("Yassss!", @guest2.can_whoohoo(@song1, @room1))
+  end
 
-
-  # #advanced extensions
-  # def test_can_whoo_when_fav_song
-  #   result = @guest2.whoo_fav_song(@song1, @room1)
-  #   assert_equal("Whoohoo!", result)
-  # end
+  def test_can_increase_till_by_entry_fee
+    assert_equal(262, @bar.increase_bar_till(@bar, @room2))
+  end
 
 
 end
