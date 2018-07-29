@@ -1,14 +1,13 @@
 class Room
 
-  attr_reader :room_number, :room_cap
+  attr_reader :room_number, :room_cap, :entry_fee
 
-  def initialize(room_number, room_cap)
+  def initialize(room_number, room_cap, entry_fee)
     @room_number = room_number
     @room_cap = room_cap
+    @entry_fee = entry_fee
     @guest_in_room = []
     @song_in_room = []
-
-
   end
 
   def check_if_empty()
@@ -33,18 +32,22 @@ class Room
     return @song_in_room << song
   end
 
-  #extensions
-  def fully_booked(guest1, guest2, guest3)
-    @guest_in_room << guest1
-    @guest_in_room << guest2
-    @guest_in_room << guest3
-    if @guest_in_room > @room_cap
-      p "Sorry, we are fully booked!"
-    end
+  # #extensions
+
+  def pay_entrance(guest, room)
+     guest_money = guest.wallet
+     guest_money -= @entry_fee
   end
 
 
-
+  # def fully_booked(guest1, guest2, guest3)
+  #   @guest_in_room << guest1
+  #   @guest_in_room << guest2
+  #   @guest_in_room << guest3
+  #   if @guest_in_room > @room_cap
+  #     p "Sorry, we are fully booked!"
+  #   end
+  # end
 
 
   # def whoo_fav_song(pref_song, room)
