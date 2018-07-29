@@ -1,5 +1,6 @@
 require("minitest/autorun")
 require("minitest/rg")
+# require.("pry")
 
 require_relative("../room")
 require_relative("../guests")
@@ -54,6 +55,16 @@ class RoomTest < MiniTest::Test
   def test_can_add_song_to_room
     @room1.add_song(@song3)
     assert_equal("The Last Frontier Hotel", @song3.song_name)
+  end
+
+  # #extenstions
+  def test_can_pay_entrance_fee
+    assert_equal(18, @guest2.pay_entrance(@guest2, @room2))
+  end
+
+  def test_can_pay_entrance_fee
+    result = @room2.pay_entrance(@guest2, @room2)
+    assert_equal(18, result)
   end
 
   # def test_fully_booked

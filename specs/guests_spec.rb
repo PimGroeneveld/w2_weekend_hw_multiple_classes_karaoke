@@ -2,6 +2,7 @@ require("minitest/autorun")
 require("minitest/rg")
 
 require("../guests")
+require("../room")
 
 class GuestTest < MiniTest::Test
 
@@ -22,5 +23,6 @@ class GuestTest < MiniTest::Test
   def test_has_wallet
     assert_equal(30, @guest2.wallet)
   end
+
 
 end
